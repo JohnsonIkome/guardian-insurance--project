@@ -1,28 +1,23 @@
 'use strict'
 
-const container = document.querySelector('.best-services-imgs')
-const buttons = document.querySelectorAll('.service-nav-btn')
-const revContainer = document.querySelector('.latest-aside-container')
-const revButtons = document.querySelectorAll('.customer-btn')
+// Mobile Navigation
+const navBtn = document.querySelector('.mobile-nav-btn')
+const navEl = document.querySelector('.navigation')
+const links = document.querySelectorAll('.nav-link')
+const mobIcon = document.querySelector('.nav-btn-icon')
 
-buttons[0].addEventListener('click', function () {
- container.scrollLeft -= 350
+navBtn.addEventListener('click', function () {
+ navEl.classList.toggle('show-nav')
+ navBtn.classList.toggle('show-nav')
 })
 
-buttons[1].addEventListener('click', () => {
- container.scrollLeft += 350
+links.forEach((link) => {
+ link.addEventListener('click', function () {
+  navEl.classList.remove('show-nav')
+ })
 })
 
-revButtons[0].addEventListener('click', function () {
- revContainer.scrollLeft -= 350
-})
-
-revButtons[1].addEventListener('click', () => {
- revContainer.scrollLeft += 350
-})
-
-// Modal
-
+// // modal
 // const readMoreLink = document.querySelectorAll('.read-more-link')
 // const overlay = document.querySelector('.overlay')
 // const closeModalEl = document.querySelector('.close-modal')
