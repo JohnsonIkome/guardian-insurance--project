@@ -94,6 +94,9 @@
  .logo-side {
   font-size: 1.3rem;
  }
+ .Q-A-head {
+  font-size: 1.5rem;
+ }
 }
 
 @media (min-width: 550px) {
@@ -277,6 +280,9 @@
   width: 100%;
   height: auto;
  }
+ .Q-A-head {
+  font-size: 1.7rem;
+ }
 }
 
 @media (min-width: 700px) {
@@ -300,6 +306,12 @@
  }
  .customer-review-con {
   justify-content: space-evenly;
+ }
+ .Q-A-card-container {
+  margin-left: 3rem;
+ }
+ .Q-A-head {
+  font-size: 1.8rem;
  }
  .blog-news-container > :nth-child(3) {
   grid-column: auto;
