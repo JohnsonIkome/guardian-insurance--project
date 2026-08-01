@@ -617,6 +617,7 @@ img {
 
 .latest-project {
  height: auto;
+ margin-bottom: 5rem;
  /* background-color: rgb(11, 11, 83); */
 
  background-image: radial-gradient(
@@ -857,21 +858,52 @@ img {
 .latest-p-side-container {
  background-color: #fff;
  border-radius: 8px;
+ /* padding-top: 12rem; */
  box-shadow: 0 2px 6px rgba(15, 14, 14, 0.514);
 }
 
 .latest-aside-container {
  display: flex;
- flex-direction: column;
  justify-content: space-between;
  align-items: center;
  gap: 8rem;
- margin-top: 15rem;
+ /* margin-top: 10rem; */
+ height: 45rem;
+
+ overflow: hidden;
+ /* white-space: nowrap; */
+ position: relative;
 }
 
 .latest-p-side {
- width: 27rem;
+ width: 32rem;
  height: 25rem;
+
+ display: inline-block;
+ animation: slideLoop 12s linear infinite;
+}
+
+/* Duplicating the cards for seamless looping */
+.latest-aside-container::after {
+ content: attr(data-duplicate);
+ position: absolute;
+ left: 0;
+ top: 0;
+ display: flex;
+ gap: 2rem;
+ white-space: nowrap;
+ pointer-events: none;
+ animation: slideLoop 12s linear infinite;
+ opacity: 0; /* invisible but used for width calculation */
+}
+
+@keyframes slideLoop {
+ from {
+  transform: translateX(0);
+ }
+ to {
+  transform: translateX(-100%);
+ }
 }
 
 .latest-p-text {
@@ -880,6 +912,8 @@ img {
  justify-content: space-around;
  align-items: center;
  padding: 4rem 3rem 4rem 3rem;
+ width: auto;
+ height: auto;
 }
 
 .latest-p-icon {
@@ -903,8 +937,9 @@ img {
  display: flex;
  flex-direction: column;
  align-items: center;
+ width: 30rem;
 
- position: relative;
+ /* position: relative; */
 }
 
 .latest-p-details {
@@ -1408,7 +1443,6 @@ img {
  padding: 0.5rem;
  border-radius: 50%;
 }
-
 /* customer review */
 .customer-reviews {
  background-image: radial-gradient(
@@ -1418,16 +1452,23 @@ img {
  );
  padding-top: 3rem;
 }
-
+.review-p-side-container {
+ width: 25rem;
+}
 .customer-review-con {
- display: flex;
- justify-content: space-between;
- align-items: center;
  overflow-x: hidden;
  width: 100%;
- max-width: 100%;
- padding-top: 2rem;
+ position: relative;
  background-color: #fff;
+ padding-top: 2rem;
+}
+
+.reviews-track {
+ display: flex;
+ transition: transform 0.4s ease;
+ will-change: transform;
+
+ gap: 0;
 }
 
 .reviews-img {
@@ -1436,9 +1477,15 @@ img {
  padding: 1rem;
  background-color: #d0cccc;
 }
+
 .review-p-side {
- max-width: 15rem;
+ width: 280px;
+ flex-shrink: 0;
+
+ display: flex;
+ justify-content: center;
 }
+
 .review-p-card {
  display: flex;
  flex-direction: column;
@@ -1449,16 +1496,20 @@ img {
  border: 1px solid #7e7c7c;
  padding: 1rem;
 }
+
 .review-p-details {
  font-size: 1.2rem;
  font-weight: 700;
 }
+
 .review-icon {
  width: 2rem;
 }
+
 .review-name {
  color: #9c9a9a;
 }
+
 .review-p-text {
  display: flex;
  flex-direction: column;

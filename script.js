@@ -57,6 +57,43 @@ btnRight.addEventListener('click', nextSlide)
 btnLeft.addEventListener('click', prevSlide)
 /*.............................*/
 
+////// reviews sliding cards
+const track = document.querySelector('.reviews-track')
+const reviewSlides = document.querySelectorAll('.review-p-side')
+
+let index = 0
+let startX = 0
+let endX = 0
+
+function updateSlide() {
+ const slideWidth = reviewSlides[0].getBoundingClientRect().width
+ track.style.transform = `translateX(-${index * slideWidth}px)`
+}
+
+track.addEventListener('touchstart', (e) => {
+ startX = e.touches[0].clientX
+})
+
+track.addEventListener('touchend', (e) => {
+ endX = e.changedTouches[0].clientX
+ handleSwipe()
+})
+
+function handleSwipe() {
+ const swipe = startX - endX
+
+ if (swipe > 50 && index < reviewSlides.length - 1) {
+  index++
+ }
+
+ if (swipe < -50 && index > 0) {
+  index--
+ }
+
+ updateSlide()
+}
+window.addEventListener('resize', updateSlide)
+
 /*........... Q-A SECTION.............*/
 const cards = document.querySelectorAll('.Q-A-card')
 
