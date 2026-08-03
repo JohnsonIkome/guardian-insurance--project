@@ -272,6 +272,11 @@ img {
 }
 .navigation.sticky {
  position: fixed;
+ top: 0;
+ left: 0;
+ width: 95%;
+ z-index: 999999;
+ background-color: #fff;
 }
 
 .nav-link:link,

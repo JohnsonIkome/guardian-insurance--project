@@ -69,6 +69,7 @@ const revealSection = function (entries, observer) {
   if (!entry.isIntersecting) return
   entry.target.classList.remove('section__hidden')
   //
+  document.querySelector('.navigation').classList.add('sticky')
   observer.unobserve(entry.target)
  })
 }
