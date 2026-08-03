@@ -6,6 +6,11 @@ const navEl = document.querySelector('.navigation')
 const links = document.querySelectorAll('.nav-link')
 const mobIcon = document.querySelector('.nav-btn-icon')
 
+const navigation = document.querySelector('.navigation')
+const hero = document.querySelector('.hero')
+
+const allSection = document.querySelectorAll('.section')
+
 navBtn.addEventListener('click', function () {
  navEl.classList.toggle('show-nav')
  navBtn.classList.toggle('show-nav')
@@ -55,8 +60,26 @@ goToSlide(0)
 
 btnRight.addEventListener('click', nextSlide)
 btnLeft.addEventListener('click', prevSlide)
-/*.............................*/
 
+/*.............. Reveal section...............*/
+const revealSection = function (entries, observer) {
+ console.log(entries)
+
+ entries.forEach((entry) => {
+  if (!entry.isIntersecting) return
+  entry.target.classList.remove('section__hidden')
+  //
+  observer.unobserve(entry.target)
+ })
+}
+
+const secObserver = new IntersectionObserver(revealSection, {
+ root: null,
+ threshold: 0.15,
+})
+allSection.forEach((section) => secObserver.observe(section))
+
+/*.............................*/
 ////// reviews sliding cards
 const track = document.querySelector('.reviews-track')
 const reviewSlides = document.querySelectorAll('.review-p-side')
@@ -128,32 +151,28 @@ cards.forEach((card) => {
 })
 
 ///////////////////////////////////////////////
-// // modal
-// const readMoreLink = document.querySelectorAll('.read-more-link')
-// const overlay = document.querySelector('.overlay')
-// const closeModalEl = document.querySelector('.close-modal')
-// const modal = document.querySelector('.modal')
+/*...........STICKY NAVIGATION.............*/
+const navHeight = navigation.getBoundingClientRect().height
+// console.log(navHeight)
 
-// const addEvent = function () {
-//  overlay.classList.add('hidden')
-//  modal.classList.add('hidden')
-// }
+const stickyNav = function (entries) {
+ const [entry] = entries
+ console.log(entries)
 
-// readMoreLink.forEach((link) => {
-//  link.addEventListener('click', function (e) {
-//   console.log(e)
-//   e.preventDefault()
-//   modal.classList.remove('hidden')
-//   overlay.classList.remove('hidden')
-//  })
-// })
+ const isOpen = navigation.classList.contains('show-nav')
 
-// closeModalEl.addEventListener('click', addEvent)
+ if (!entry.isIntersecting && !isOpen) {
+  navigation.classList.add('sticky')
+  //   navEl.classList.remove('show-nav')
+ } else {
+  navigation.classList.remove('sticky')
+  //   navEl.classList.add('show-nav')
+ }
+}
 
-// document.querySelector('.overlay').addEventListener('click', addEvent)
-
-// document.addEventListener('keydown', function (e) {
-//  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-//   addEvent()
-//  }
-// })
+const headerObserver = new IntersectionObserver(stickyNav, {
+ root: null,
+ threshold: 0,
+ rootMargin: `-${navHeight}px`,
+})
+headerObserver.observe(hero)
